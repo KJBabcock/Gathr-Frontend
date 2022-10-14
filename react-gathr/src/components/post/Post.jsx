@@ -1,10 +1,50 @@
 import "./post.css";
-import React from 'react'
+import { MoreVert } from "@material-ui/icons";
+import { Users } from "../../dummyData";
+import { useState } from "react";
 
-export default function Post() {
+export default function Post({ post }) {
+  const [like,setLike] = useState(post.like)
+  const [isLiked,setIsLiked] = useState(false)
+
+  const likeHandler =()=>{
+    setLike(isLiked ? like-1 : like+1)
+    setIsLiked(!isLiked)
+  }
   return (
-    <div>
-      post
+    <div className="post">
+      <div className="postWrapper">
+        <div className="postTop">
+          <div className="postTopLeft">
+            <img
+              className="postProfileImg"
+              src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
+              alt=""
+            />
+            <span className="postUsername">
+              {Users.filter((u) => u.id === post?.userId)[0].username}
+            </span>
+            <span className="postDate">{post.date}</span>
+          </div>
+          <div className="postTopRight">
+            <MoreVert />
+          </div>
+        </div>
+        <div className="postCenter">
+          <span className="postText">{post?.desc}</span>
+          <img className="postImg" src={post.photo} alt="" />
+        </div>
+        <div className="postBottom">
+          <div className="postBottomLeft">
+            <img className="likeIcon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBttCCpvTzDbMyz3FMGx-T9xvDeAgbhkMDI3BDPtSv65WsXkchIT82iiqXd2P7Sr0EGzI&usqp=CAU" onClick={likeHandler} alt="" />
+            <img className="likeIcon" src="https://cdn.pixabay.com/photo/2013/07/12/18/03/black-152877__340.png" onClick={likeHandler} alt="" />
+            <span className="postLikeCounter">{like} people like it</span>
+          </div>
+          <div className="postBottomRight">
+            <span className="postCommentText">{post.comment} comments</span>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

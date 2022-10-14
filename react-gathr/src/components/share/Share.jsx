@@ -6,9 +6,9 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img className="shareProfileImg" src="https://melmagazine.com/wp-content/uploads/2021/01/66f-1.jpg" alt="" />
+          <img className="shareProfileImg" src="/assets/person/1.jpeg" alt="" />
           <input
-            placeholder="What's in your mind Safak?"
+            placeholder="What's on your mind Kyle?"
             className="shareInput"
           />
         </div>
